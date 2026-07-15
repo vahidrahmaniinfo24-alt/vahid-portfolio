@@ -51,7 +51,7 @@ const Header = () => {
           className="mt-8 flex animate-fade-in-up items-center justify-center gap-5 text-portfolio-muted"
           style={{ animationDelay: "0.24s" }}
         >
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="transition hover:text-portfolio-accent" aria-label="GitHub">
+          <a href="https://github.com/vahidrahmaniinfo24-alt" target="_blank" rel="noreferrer" className="transition hover:text-portfolio-accent" aria-label="GitHub">
             <Github size={20} />
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="transition hover:text-portfolio-accent" aria-label="LinkedIn">
