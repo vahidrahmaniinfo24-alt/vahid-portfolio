@@ -6,6 +6,7 @@ import Skills from "@/components/portfolio/Skills";
 import Certificates from "@/components/portfolio/Certificates";
 import Contact from "@/components/portfolio/Contact";
 import Roadmap from "@/components/portfolio/Roadmap";
+import Projects from "@/components/portfolio/Projects";
 import FooterCredits from "@/components/FooterCredits";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
         <RevealMore />
         <Experience />
         <Roadmap />
+        <Projects />
         <Skills />
         <Certificates />
         <Contact />
