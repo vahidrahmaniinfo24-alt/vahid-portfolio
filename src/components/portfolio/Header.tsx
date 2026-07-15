@@ -1,6 +1,7 @@
-import { Github, Linkedin, Mail, MapPin, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, ArrowDown, Download } from "lucide-react";
 import OpenToWorkBadge from "./OpenToWorkBadge";
 import ProfilePhoto from "./ProfilePhoto";
+import cvPdf from "../../../img/vahid_cv.pdf";
 
 const Header = () => {
   return (
@@ -55,6 +56,13 @@ const Header = () => {
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/40"
           >
             Werdegang ansehen <ArrowDown size={16} />
+          </a>
+          <a
+            href={cvPdf}
+            download
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-portfolio-accent hover:text-portfolio-accent"
+          >
+            <Download size={16} /> Lebenslauf
           </a>
         </div>
 
