@@ -64,6 +64,8 @@ const projects: Project[] = [
       "On-Premises Windows Active Directory → Azure AD Connect → Azure Entra ID.",
     tech: ["Windows Server", "Active Directory", "Azure Entra ID", "Azure AD Connect"],
     icon: Shield,
+    githubUrl:
+      "https://github.com/vahidrahmaniinfo24-alt/Hybrid-Identity-Sync-Local-AD-to-Azure-Entra-ID",
     steps: [
       { label: "Step 1: Set up Windows Server 2022/2025 domain controller.", status: "completed" },
       { label: "Step 2: Create a free Azure Developer sandbox tenant.", status: "planned" },
@@ -81,6 +83,8 @@ const projects: Project[] = [
       "Cron Job → Serverless Function (Python) → Port/Ping Checker → Webhook → Discord/Telegram.",
     tech: ["Python", "Serverless", "REST APIs", "Telegram Bot API"],
     icon: Bot,
+    githubUrl:
+      "https://github.com/vahidrahmaniinfo24-alt/Serverless-Network-Sentinel-Bot",
     steps: [
       { label: "Step 1: Write local Python script using sockets to check TCP ports (In Progress).", status: "in-progress" },
       { label: "Step 2: Create Telegram/Discord bot token and set up API webhooks.", status: "planned" },
