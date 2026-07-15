@@ -18,7 +18,7 @@ const Header = () => {
           className="mt-6 animate-fade-in-up text-5xl font-bold tracking-tight text-white font-display sm:text-7xl"
           style={{ animationDelay: "0.05s" }}
         >
-          Jordan Ellis
+          Vahid Rahmani
         </h1>
 
         <p
