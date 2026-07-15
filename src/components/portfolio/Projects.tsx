@@ -102,6 +102,8 @@ const projects: Project[] = [
       "Physical Circuit Schematics → ESP32 Microcontroller → MQTT Protocol → Azure IoT Hub → Live Chart UI.",
     tech: ["Python/C++", "IoT Hub", "ESP32", "MQTT", "WebSockets"],
     icon: Cpu,
+    githubUrl:
+      "https://github.com/vahidrahmaniinfo24-alt/Cloud-Connected-Hardware-IoT-Monitor",
     steps: [
       { label: "Step 1: Analyze physical board schematics and trace voltage/temp test points.", status: "completed" },
       { label: "Step 2: Micro-solder wires to ESP32 ADC pins for diagnostic telemetry (In Progress).", status: "in-progress" },
