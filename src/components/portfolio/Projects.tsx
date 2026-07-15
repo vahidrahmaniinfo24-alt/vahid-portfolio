@@ -32,6 +32,7 @@ type Project = {
   tech: string[];
   icon: React.ComponentType<{ size?: number; className?: string }>;
   steps: Step[];
+  githubUrl?: string;
 };
 
 const projects: Project[] = [
@@ -44,6 +45,8 @@ const projects: Project[] = [
       "Local Virtual Network (Windows Server AD + Linux clients) → Python Agent → Flask/Streamlit Dashboard.",
     tech: ["Ansible", "Python", "Active Directory", "Linux", "VirtualBox"],
     icon: Network,
+    githubUrl:
+      "https://github.com/vahidrahmaniinfo24-alt/Automated-Hybrid-Network-Monitoring-Dashboard",
     steps: [
       { label: "Step 1: Design network topology and IP planning (VirtualBox).", status: "completed" },
       { label: "Step 2: Configure Windows Server AD & DNS/DHCP services (In Progress).", status: "in-progress" },
@@ -242,10 +245,14 @@ const ProjectModal = ({
           onClick={(e) => e.stopPropagation()}
         >
           <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
+            href={project.githubUrl || "#"}
+            onClick={(e) => {
+              if (!project.githubUrl) e.preventDefault();
+            }}
+            target={project.githubUrl ? "_blank" : undefined}
+            rel={project.githubUrl ? "noreferrer" : undefined}
             className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-white transition hover:border-portfolio-accent hover:text-portfolio-accent"
-            aria-label="GitHub Repository (Platzhalter)"
+            aria-label="GitHub Repository"
           >
             <Github size={14} /> GitHub
           </a>
