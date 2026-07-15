@@ -208,8 +208,11 @@ const Roadmap = () => {
                   <Icon size={16} />
                 </span>
 
-                {/* Card */}
-                <div className="rounded-2xl border border-white/10 bg-portfolio-surface p-6 transition-colors hover:border-white/20">
+                {/* Clickable Card */}
+                <div
+                  onClick={() => setExpandedId(expanded ? null : phase.id)}
+                  className="cursor-pointer rounded-2xl border border-white/10 bg-portfolio-surface p-6 transition-colors hover:border-white/20"
+                >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wider text-portfolio-accent">
@@ -224,14 +227,13 @@ const Roadmap = () => {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => setExpandedId(expanded ? null : phase.id)}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-portfolio-accent transition hover:opacity-80"
-                    aria-expanded={expanded}
-                  >
+                  <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-portfolio-accent">
                     {expanded ? "Tech Cheat Sheet verbergen" : "Tech Cheat Sheet anzeigen"}
-                    <ChevronDown size={16} className={cn("transition-transform", expanded && "rotate-180")} />
-                  </button>
+                    <ChevronDown
+                      size={16}
+                      className={cn("transition-transform", expanded && "rotate-180")}
+                    />
+                  </div>
 
                   <div
                     className={cn(
