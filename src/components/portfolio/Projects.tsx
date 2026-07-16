@@ -134,17 +134,17 @@ const projects: Project[] = [
 
 const StepIcon = ({ status }: { status: StepStatus }) => {
   if (status === "completed") {
-    return <CheckCircle2 size={18} className="shrink-0 text-emerald-400" />;
+    return <CheckCircle2 size={18} className="shrink-0 text-emerald-300" />;
   }
   if (status === "in-progress") {
     return (
       <span className="relative flex h-4 w-4 shrink-0 items-center justify-center">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-        <span className="relative inline-flex h-3 w-3 rounded-full bg-blue-400"></span>
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-60"></span>
+        <span className="relative inline-flex h-3 w-3 rounded-full bg-teal-400"></span>
       </span>
     );
   }
-  return <CircleDot size={18} className="shrink-0 text-portfolio-muted" />;
+  return <CircleDot size={18} className="shrink-0 text-zinc-600" />;
 };
 
 const ProjectModal = ({
@@ -162,82 +162,72 @@ const ProjectModal = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
-
-      {/* Modal */}
       <motion.div
         role="dialog"
         aria-modal="true"
-        className="relative z-10 max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/10 bg-portfolio-surface p-6 shadow-[0_0_40px_rgba(0,0,0,0.5)] sm:p-8"
-        initial={{ opacity: 0, scale: 0.95 }}
+        className="relative z-10 max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-[#09090b] p-6 shadow-2xl sm:p-8"
+        initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
+        exit={{ opacity: 0, scale: 0.97 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-portfolio-muted transition hover:border-portfolio-accent hover:text-portfolio-accent"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition hover:border-teal-400/40 hover:text-teal-400"
           aria-label="Schließen"
         >
           <X size={18} />
         </button>
 
-        {/* Header */}
         <div className="flex items-start gap-4 pr-10">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-portfolio-accent/10 text-portfolio-accent">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-400/10 text-teal-400">
             <Icon size={24} />
           </div>
           <div className="min-w-0">
-            <h3 className="text-xl font-semibold leading-snug text-white">
+            <h3 className="text-xl font-semibold leading-snug text-[#f4f4f5]">
               {project.title}
             </h3>
-            <p className="mt-1 text-sm text-portfolio-accent">{project.subtitle}</p>
+            <p className="mt-1 text-sm text-teal-400">{project.subtitle}</p>
           </div>
         </div>
 
-        {/* Concept badge */}
         <div className="mt-5">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-portfolio-accent/15 px-3 py-1 text-xs font-semibold text-portfolio-accent">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium text-teal-400">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-portfolio-accent opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-portfolio-accent"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-60"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400"></span>
             </span>
             Konzeptphase
           </span>
         </div>
 
-        {/* Architecture */}
-        <div className="mt-5 rounded-xl border border-white/10 bg-portfolio-bg/50 p-4">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-portfolio-muted">
+        <div className="mt-5 rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-zinc-500">
             Architecture
           </p>
-          <p className="text-sm leading-relaxed text-white">{project.architecture}</p>
+          <p className="text-sm leading-relaxed text-zinc-300">{project.architecture}</p>
         </div>
 
-        {/* Implementation Roadmap */}
         <div className="mt-6">
-          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-portfolio-accent">
+          <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-teal-400">
             Implementation Roadmap
           </h4>
           <ul className="space-y-3">
             {project.steps.map((step, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 rounded-xl border border-white/5 bg-portfolio-bg/40 p-3"
+                className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
               >
                 <StepIcon status={step.status} />
                 <span
                   className={cn(
                     "text-sm leading-relaxed",
-                    step.status === "planned"
-                      ? "text-portfolio-muted"
-                      : "text-white",
+                    step.status === "planned" ? "text-zinc-500" : "text-zinc-300",
                   )}
                 >
                   {step.label}
@@ -247,11 +237,7 @@ const ProjectModal = ({
           </ul>
         </div>
 
-        {/* Action buttons */}
-        <div
-          className="mt-6 flex items-center gap-3"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="mt-6 flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
           <a
             href={project.githubUrl || "#"}
             onClick={(e) => {
@@ -259,7 +245,7 @@ const ProjectModal = ({
             }}
             target={project.githubUrl ? "_blank" : undefined}
             rel={project.githubUrl ? "noreferrer" : undefined}
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-white transition hover:border-portfolio-accent hover:text-portfolio-accent"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-4 py-2 text-xs font-medium text-zinc-300 transition hover:border-teal-400/40 hover:text-teal-400"
             aria-label="GitHub Repository"
           >
             <Github size={14} /> GitHub
@@ -267,7 +253,7 @@ const ProjectModal = ({
           <a
             href="#"
             onClick={(e) => e.preventDefault()}
-            className="inline-flex items-center gap-1.5 rounded-full bg-portfolio-accent px-4 py-2 text-xs font-semibold text-portfolio-bg transition hover:opacity-90"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#f4f4f5] px-4 py-2 text-xs font-medium text-[#09090b] transition hover:bg-zinc-200"
             aria-label="Live Demo (Platzhalter)"
           >
             <ExternalLink size={14} /> Live Demo
@@ -282,47 +268,47 @@ const Projects = () => {
   const [activeProject, setActiveProject] = React.useState<Project | null>(null);
 
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-16">
+    <section id="projects" className="scroll-mt-24 border-b border-white/[0.06] px-0 py-16">
       <div className="mb-8 flex items-center gap-2">
-        <FolderGit className="text-portfolio-accent" size={22} />
-        <h2 className="text-2xl font-bold text-white font-display">Projekte</h2>
+        <FolderGit className="text-teal-400" size={20} />
+        <h2 className="text-xl font-semibold tracking-tight text-[#f4f4f5]">Projekte</h2>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, i) => {
           const Icon = project.icon;
           return (
             <button
               key={project.title}
               onClick={() => setActiveProject(project)}
-              className="group animate-fade-in-up cursor-pointer rounded-2xl border border-white/10 bg-portfolio-surface p-6 text-left transition-all duration-300 hover:-translate-y-2 hover:border-portfolio-accent/40 hover:shadow-[0_0_28px_rgba(255,107,87,0.25)]"
+              className="group animate-fade-in-up cursor-pointer rounded-xl border border-white/[0.08] bg-white/[0.02] p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30"
               style={{ animationDelay: `${i * 0.06}s` }}
             >
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-portfolio-accent/10 text-portfolio-accent transition-colors group-hover:bg-portfolio-accent/20">
-                  <Icon size={24} />
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-400/10 text-teal-400">
+                  <Icon size={20} />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-lg font-semibold leading-snug text-white">
+                  <h3 className="text-sm font-medium leading-snug text-[#f4f4f5]">
                     {project.title}
                   </h3>
-                  <p className="mt-1 text-sm text-portfolio-accent">{project.subtitle}</p>
+                  <p className="mt-1 text-xs text-teal-400/80">{project.subtitle}</p>
                 </div>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-1.5">
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-portfolio-muted ring-1 ring-white/10"
+                    className="rounded-full bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-zinc-400 ring-1 ring-white/[0.06]"
                   >
                     {t}
                   </span>
                 ))}
               </div>
 
-              <p className="mt-4 text-xs font-medium text-portfolio-accent opacity-0 transition-opacity group-hover:opacity-100">
-                Klicken für Implementation Roadmap →
+              <p className="mt-4 text-xs font-medium text-teal-400 opacity-0 transition-opacity group-hover:opacity-100">
+                Klicken für Roadmap →
               </p>
             </button>
           );
@@ -331,10 +317,7 @@ const Projects = () => {
 
       <AnimatePresence>
         {activeProject && (
-          <ProjectModal
-            project={activeProject}
-            onClose={() => setActiveProject(null)}
-          />
+          <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
         )}
       </AnimatePresence>
     </section>

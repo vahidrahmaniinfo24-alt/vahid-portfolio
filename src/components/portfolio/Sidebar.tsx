@@ -1,0 +1,114 @@
+"use client";
+
+import React from "react";
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const navItems = [
+  { id: "about", label: "Über mich" },
+  { id: "experience", label: "Werdegang" },
+  { id: "roadmap", label: "Roadmap" },
+  { id: "projects", label: "Projekte" },
+  { id: "skills", label: "Fachkenntnisse" },
+  { id: "certificates", label: "Zertifikate" },
+  { id: "contact", label: "Kontakt" },
+];
+
+const Sidebar = () => {
+  const [active, setActive] = React.useState<string>("about");
+
+  React.useEffect(() => {
+    const sections = navItems
+      .map((i) => document.getElementById(i.id))
+      .filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-[280px] flex-col justify-between border-r border-white/[0.06] bg-[#09090b] px-8 py-12 lg:flex">
+      <div>
+        <a href="#about" className="block">
+          <h1 className="text-2xl font-semibold tracking-tight text-[#f4f4f5]">
+            Vahid Rahmani
+          </h1>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-500">
+            Cloud Engineer & IT System Administrator
+          </p>
+        </a>
+
+        <nav className="mt-10">
+          <ul className="space-y-1">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={cn(
+                    "group inline-flex items-center gap-2 text-sm transition-colors",
+                    active === item.id
+                      ? "text-[#f4f4f5]"
+                      : "text-zinc-500 hover:text-zinc-300",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "h-px w-4 transition-all duration-300",
+                      active === item.id
+                        ? "bg-teal-400 w-6"
+                        : "bg-zinc-700 group-hover:bg-zinc-500",
+                    )}
+                  />
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <div className="flex items-center gap-4 text-zinc-500">
+        <a
+          href="https://github.com/vahidrahmaniinfo24-alt"
+          target="_blank"
+          rel="noreferrer"
+          className="transition-colors hover:text-teal-400"
+          aria-label="GitHub"
+        >
+          <Github size={18} />
+        </a>
+        <a
+          href="https://linkedin.com/in/vahid-rahmani-699944417"
+          target="_blank"
+          rel="noreferrer"
+          className="transition-colors hover:text-teal-400"
+          aria-label="LinkedIn"
+        >
+          <Linkedin size={18} />
+        </a>
+        <a
+          href="mailto:vahidrahmani.info@gmail.com"
+          className="transition-colors hover:text-teal-400"
+          aria-label="E-Mail"
+        >
+          <Mail size={18} />
+        </a>
+        <a
+          href="#contact"
+          className="ml-auto inline-flex items-center gap-1 text-xs text-zinc-500 transition-colors hover:text-teal-400"
+        >
+          Top <ArrowUpRight size={14} />
+        </a>
+      </div>
+    </aside>
+  );
+};
+
+export default Sidebar;

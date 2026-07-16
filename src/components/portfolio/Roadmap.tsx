@@ -136,116 +136,90 @@ const phases = [
 const StatusBadge = ({ status }: { status: Status }) => {
   if (status === "completed") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-400">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
         <CheckCircle2 size={14} /> Abgeschlossen
       </span>
     );
   }
   if (status === "in-progress") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 px-3 py-1 text-xs font-semibold text-blue-400">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium text-teal-400">
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400"></span>
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-60"></span>
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400"></span>
         </span>
         In Arbeit
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-portfolio-muted">
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] px-3 py-1 text-xs font-medium text-zinc-500">
       <CircleDot size={14} /> Geplant
     </span>
   );
 };
 
 const nodeStyles: Record<Status, string> = {
-  completed: "border-emerald-500/60 text-emerald-400",
-  "in-progress": "border-blue-400/70 text-blue-400",
-  planned: "border-white/15 text-portfolio-muted",
+  completed: "border-emerald-400/50 text-emerald-300",
+  "in-progress": "border-teal-400/60 text-teal-400",
+  planned: "border-white/15 text-zinc-500",
 };
 
 const Roadmap = () => {
-  const [progress, setProgress] = React.useState(0);
   const [expandedId, setExpandedId] = React.useState<string | null>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const el = containerRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const scrolled = vh * 0.6 - rect.top;
-      const p = Math.min(Math.max(scrolled / rect.height, 0), 1);
-      setProgress(p);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <section id="roadmap" className="mx-auto max-w-3xl px-6 py-16">
+    <section id="roadmap" className="scroll-mt-24 border-b border-white/[0.06] px-0 py-16">
       <div className="mb-4 flex items-center gap-2">
-        <Milestone className="text-portfolio-accent" size={22} />
-        <h2 className="text-2xl font-bold text-white font-display">Karriere- & Lern-Roadmap</h2>
+        <Milestone className="text-teal-400" size={20} />
+        <h2 className="text-xl font-semibold tracking-tight text-[#f4f4f5]">Karriere- & Lern-Roadmap</h2>
       </div>
-      <p className="mb-10 text-portfolio-muted">
+      <p className="mb-10 text-sm text-zinc-500">
         Vom klassischen Network & Systems Engineering bis zur modernen
         Cloud-/DevOps- und Security-Welt – mein strukturierter Weg.
       </p>
 
-      <div ref={containerRef} className="relative">
-        {/* Background track */}
-        <div className="absolute left-[1.45rem] top-4 bottom-4 w-0.5 rounded-full bg-white/10"></div>
-        {/* Glowing animated progress line */}
-        <div
-          className="absolute left-[1.45rem] top-4 w-0.5 rounded-full bg-portfolio-accent shadow-[0_0_12px_3px_rgba(255,107,87,0.55)] transition-[height] duration-200 ease-out"
-          style={{ height: `calc((100% - 2rem) * ${progress})` }}
-        ></div>
+      <div className="relative">
+        <div className="absolute left-[1.05rem] top-4 bottom-4 w-px bg-white/[0.08]"></div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {phases.map((phase, i) => {
             const Icon = phase.icon;
             const expanded = expandedId === phase.id;
             return (
               <div
                 key={phase.id}
-                className="relative animate-fade-in-up pl-12"
+                className="relative animate-fade-in-up pl-10"
                 style={{ animationDelay: `${i * 0.05}s` }}
               >
-                {/* Node */}
                 <span
                   className={cn(
-                    "absolute left-2 top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 bg-portfolio-bg",
+                    "absolute left-0 top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 bg-[#09090b]",
                     nodeStyles[phase.status],
-                    phase.status === "in-progress" && "shadow-[0_0_0_4px_rgba(96,165,250,0.15)]",
                   )}
                 >
-                  <Icon size={16} />
+                  <Icon size={14} />
                 </span>
 
-                {/* Clickable Card */}
                 <div
                   onClick={() => setExpandedId(expanded ? null : phase.id)}
-                  className="cursor-pointer rounded-2xl border border-white/10 bg-portfolio-surface p-6 transition-colors hover:border-white/20"
+                  className="cursor-pointer rounded-xl border border-white/[0.08] bg-white/[0.02] p-5 transition-colors hover:border-white/15"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-portfolio-accent">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-teal-400">
                         {phase.tag}
                       </p>
-                      <h3 className="text-lg font-semibold text-white">{phase.title}</h3>
-                      <p className="text-sm text-portfolio-muted">{phase.subtitle}</p>
+                      <h3 className="text-base font-medium text-[#f4f4f5]">{phase.title}</h3>
+                      <p className="text-sm text-zinc-500">{phase.subtitle}</p>
                     </div>
                     <div className="flex flex-col items-start gap-2 sm:items-end">
                       <StatusBadge status={phase.status} />
-                      <span className="text-xs text-portfolio-muted">{phase.period}</span>
+                      <span className="text-xs text-zinc-500">{phase.period}</span>
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-portfolio-accent">
+                  <div className="mt-3 flex items-center gap-1.5 text-sm font-medium text-teal-400">
                     {expanded ? "Tech Cheat Sheet verbergen" : "Tech Cheat Sheet anzeigen"}
                     <ChevronDown
                       size={16}
@@ -260,20 +234,20 @@ const Roadmap = () => {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <div className="rounded-xl border border-white/10 bg-portfolio-bg/50 p-4">
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-portfolio-muted">
+                      <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4">
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">
                           Tech Cheat Sheet
                         </p>
                         <ul className="space-y-2">
                           {phase.topics.map((t) => (
-                            <li key={t} className="flex gap-2 text-sm text-white">
-                              <span className="text-portfolio-accent">▹</span>
+                            <li key={t} className="flex gap-2 text-sm text-zinc-300">
+                              <span className="text-teal-400">—</span>
                               <span>{t}</span>
                             </li>
                           ))}
                         </ul>
                         {phase.note && (
-                          <p className="mt-3 text-xs italic text-portfolio-muted">{phase.note}</p>
+                          <p className="mt-3 text-xs italic text-zinc-500">{phase.note}</p>
                         )}
                       </div>
                     </div>

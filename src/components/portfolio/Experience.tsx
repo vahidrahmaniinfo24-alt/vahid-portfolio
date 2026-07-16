@@ -56,30 +56,28 @@ const experience = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="mx-auto max-w-3xl px-6 py-16">
+    <section id="experience" className="scroll-mt-24 border-b border-white/[0.06] px-0 py-16">
       <div className="mb-8 flex items-center gap-2">
-        <Briefcase className="text-portfolio-accent" size={22} />
-        <h2 className="text-2xl font-bold text-white font-display">Beruflicher Werdegang</h2>
+        <Briefcase className="text-teal-400" size={20} />
+        <h2 className="text-xl font-semibold tracking-tight text-[#f4f4f5]">Beruflicher Werdegang</h2>
       </div>
-      <div className="relative border-l border-white/10 pl-8">
+      <div className="relative border-l border-white/[0.08] pl-6">
         {experience.map((item, i) => (
           <div key={i} className="relative mb-10 last:mb-0">
-            <span className="absolute -left-[2.6rem] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-portfolio-accent ring-4 ring-portfolio-bg"></span>
-            <div className="rounded-2xl border border-white/10 bg-portfolio-surface p-6">
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-lg font-semibold text-white">{item.role}</h3>
-                <span className="text-sm font-medium text-portfolio-accent">{item.period}</span>
-              </div>
-              <p className="text-sm text-portfolio-muted">{item.company} · {item.location}</p>
-              <ul className="mt-3 space-y-1.5">
-                {item.points.map((p, j) => (
-                  <li key={j} className="flex gap-2 text-sm text-portfolio-muted">
-                    <span className="text-portfolio-accent">▹</span>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
+            <span className="absolute -left-[1.95rem] top-2 h-2.5 w-2.5 rounded-full border-2 border-teal-400 bg-[#09090b]"></span>
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+              <h3 className="text-base font-medium text-[#f4f4f5]">{item.role}</h3>
+              <span className="text-xs font-medium text-teal-400">{item.period}</span>
             </div>
+            <p className="text-sm text-zinc-500">{item.company} · {item.location}</p>
+            <ul className="mt-3 space-y-1.5">
+              {item.points.map((p, j) => (
+                <li key={j} className="flex gap-2 text-sm text-zinc-400">
+                  <span className="text-teal-400">—</span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>

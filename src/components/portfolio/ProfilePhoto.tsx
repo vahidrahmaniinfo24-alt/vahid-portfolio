@@ -3,12 +3,11 @@ import profileImage from "../../../img/vr.jpg";
 
 const ProfilePhoto = ({ className, src }: { className?: string; src?: string }) => {
   return (
-    <div className={cn("relative mx-auto h-32 w-32 sm:h-40 sm:w-40", className)}>
-      <div className="absolute -inset-1 rounded-full bg-portfolio-accent/20 blur-md"></div>
+    <div className={cn("relative mx-auto h-28 w-28 sm:h-32 sm:w-32", className)}>
       <img
         src={src || profileImage}
         alt="Vahid Rahmani"
-        className="relative h-full w-full rounded-full border-2 border-portfolio-accent/50 object-cover"
+        className="h-full w-full rounded-full border border-white/10 object-cover"
       />
     </div>
   );
