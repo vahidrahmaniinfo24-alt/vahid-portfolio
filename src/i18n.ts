@@ -275,6 +275,22 @@ const resources = {
             { label: "Step 5: Test deployment speeds globally and implement a clean CI/CD destroy/apply pipeline.", status: "planned" },
           ],
         },
+        {
+          title: "PyFlow — Python Learning Platform",
+          subtitle: "AI-powered interactive Python & AI education platform",
+          description:
+            "PyFlow is a modern, interactive and AI-powered education platform designed to turn beginners into proficient Python and AI developers. Built with a 'Learn-by-Doing' philosophy: gamified lessons, an AI tutor, a secure Monaco-based code sandbox, PWA experience and full i18n (DE, EN, TR, RU, AR).",
+          architecture:
+            "React + Tailwind Frontend → Django REST API → PostgreSQL / Redis / Celery Sandbox → OpenAI LLM Agents.",
+          tech: ["React", "Tailwind CSS", "Django", "DRF", "PostgreSQL", "Docker", "Redis", "Celery", "OpenAI API"],
+          steps: [
+            { label: "Step 1: Project scaffolding & i18n infrastructure.", status: "completed" },
+            { label: "Step 2: Course content management & user progress tracking.", status: "in-progress" },
+            { label: "Step 3: AI code sandbox implementation (secure execution).", status: "planned" },
+            { label: "Step 4: Gamification (XP, streaks, achievements) & PWA mobile app.", status: "planned" },
+            { label: "Step 5: Public launch on Vercel with multi-language support.", status: "completed" },
+          ],
+        },
       ],
 
       "skills.title": "Skills",
@@ -495,7 +511,7 @@ const resources = {
       "projects.title": "Projekte",
       "projects.clickHint": "Klicken für Roadmap →",
       "projects.concept": "Konzeptphase",
-      "projects.architecture": "Architecture",
+      "projects.architecture": "Architektur",
       "projects.roadmapLabel": "Implementation Roadmap",
       "projects.github": "GitHub",
       "projects.demo": "Live Demo",
@@ -577,6 +593,22 @@ const resources = {
             { label: "Step 3: Configure CloudFront / Azure CDN for edge caching.", status: "planned" },
             { label: "Step 4: Set up automated SSL certificate provisioning via Let's Encrypt / ACM.", status: "planned" },
             { label: "Step 5: Test deployment speeds globally and implement a clean CI/CD destroy/apply pipeline.", status: "planned" },
+          ],
+        },
+        {
+          title: "PyFlow — Python Learning Platform",
+          subtitle: "KI-gestützte interaktive Python- & KI-Lernplattform",
+          description:
+            "PyFlow ist eine moderne, interaktive und KI-gestützte Bildungsplattform, die Anfänger zu fortgeschrittenen Python- und KI-Entwicklern macht. Mit 'Learning-by-Doing'-Philosophie: gamifizierte Lektionen, KI-Tutor, sicherer Monaco-Code-Sandbox, PWA-Erlebnis und volle i18n (DE, EN, TR, RU, AR).",
+          architecture:
+            "React + Tailwind Frontend → Django REST API → PostgreSQL / Redis / Celery Sandbox → OpenAI LLM Agents.",
+          tech: ["React", "Tailwind CSS", "Django", "DRF", "PostgreSQL", "Docker", "Redis", "Celery", "OpenAI API"],
+          steps: [
+            { label: "Step 1: Projekt-Scaffolding & i18n-Infrastruktur.", status: "completed" },
+            { label: "Step 2: Kursinhalts-Verwaltung & Fortschrittstracking.", status: "in-progress" },
+            { label: "Step 3: KI-Code-Sandbox-Implementierung (sichere Ausführung).", status: "planned" },
+            { label: "Step 4: Gamification (XP, Streaks, Achievements) & PWA Mobile App.", status: "planned" },
+            { label: "Step 5: Öffentlicher Launch auf Vercel mit Mehrsprachigkeit.", status: "completed" },
           ],
         },
       ],
