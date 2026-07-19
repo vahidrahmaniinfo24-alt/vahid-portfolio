@@ -30,7 +30,7 @@ const githubUrls: Record<string, string> = {
 const demoUrls: Record<string, string> = {
   "Automated Hybrid Network & Monitoring Dashboard": "https://automated-hybrid-network-monitoring-dashboard-9ebg2scanuxqe7fk.streamlit.app/",
   "PyFlow — Python Learning Platform": "https://pyflow-platform.vercel.app/",
-  "PyMentor — AI Coding Demo": "https://vercel.com/vahid-portfolio/py-mentor/7zXBPWqoXmA3ojUoTmnbSXoEGfKx",
+  "PyMentor — AI Coding Demo": "https://py-mentor.vercel.app",
 };
 
 const StepIcon = ({ status }: { status: StepStatus }) => {
