@@ -33,15 +33,44 @@ const demoUrls: Record<string, string> = {
   "PyMentor — AI Coding Demo": "https://py-mentor.vercel.app",
 };
 
+const stepWeight: Record<StepStatus, number> = {
+  completed: 1,
+  "in-progress": 0.5,
+  planned: 0,
+};
+
+const getProgress = (steps: Step[]): number => {
+  if (steps.length === 0) return 0;
+  const total = steps.reduce((sum, s) => sum + stepWeight[s.status], 0);
+  return Math.round((total / steps.length) * 100);
+};
+
 const StepIcon = ({ status }: { status: StepStatus }) => {
   if (status === "completed") return <CheckCircle2 size={18} className="shrink-0 text-emerald-300" />;
   if (status === "in-progress") return <span className="relative flex h-4 w-4 shrink-0 items-center justify-center"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-60"></span><span className="relative inline-flex h-3 w-3 rounded-full bg-teal-400"></span></span>;
   return <CircleDot size={18} className="shrink-0 text-zinc-600" />;
 };
 
+const ProgressRing = ({ value }: { value: number }) => {
+  const radius = 16;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (value / 100) * circumference;
+  const color = value >= 100 ? "#34d399" : value > 0 ? "#2dd4bf" : "#52525b";
+  return (
+    <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
+      <svg className="h-10 w-10 -rotate-90" viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r={radius} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
+        <circle cx="20" cy="20" r={radius} fill="none" stroke={color} strokeWidth="3" strokeDasharray={circumference} strokeDashoffset={offset} strokeLinecap="round" className="transition-[stroke-dashoffset] duration-700 ease-out" />
+      </svg>
+      <span className="absolute text-[10px] font-semibold text-zinc-200">{value}%</span>
+    </div>
+  );
+};
+
 const ProjectModal = ({ project, onClose, t }: { project: Project; onClose: () => void; t: (k: string) => string }) => {
   const Icon = iconMap[project.icon] || FolderGit;
   const demo = project.demoUrl || demoUrls[project.title];
+  const progress = getProgress(project.steps);
   return (
     <motion.div className="fixed inset-0 z-[60] flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
@@ -49,10 +78,11 @@ const ProjectModal = ({ project, onClose, t }: { project: Project; onClose: () =
         <button onClick={onClose} className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition hover:border-teal-400/40 hover:text-teal-400" aria-label="Schließen"><X size={18} /></button>
         <div className="flex items-start gap-4 pr-10">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-400/10 text-teal-400"><Icon size={24} /></div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <h3 className="text-xl font-semibold leading-snug text-[#f4f4f5]">{project.title}</h3>
             <p className="mt-1 text-sm text-teal-400">{project.subtitle}</p>
           </div>
+          <ProgressRing value={progress} />
         </div>
         <div className="mt-5">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium text-teal-400">
@@ -98,14 +128,18 @@ const Projects = () => {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((project, i) => {
           const Icon = iconMap[project.icon] || FolderGit;
+          const progress = getProgress(project.steps);
           return (
             <button key={project.title} onClick={() => setActive(project)} className="group animate-fade-in-up cursor-pointer rounded-xl border border-white/[0.08] bg-white/[0.02] p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30" style={{ animationDelay: `${i * 0.06}s` }}>
-              <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-400/10 text-teal-400"><Icon size={20} /></div>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-medium leading-snug text-[#f4f4f5]">{project.title}</h3>
-                  <p className="mt-1 text-xs text-teal-400/80">{project.subtitle}</p>
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-400/10 text-teal-400"><Icon size={20} /></div>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-medium leading-snug text-[#f4f4f5]">{project.title}</h3>
+                    <p className="mt-1 text-xs text-teal-400/80">{project.subtitle}</p>
+                  </div>
                 </div>
+                <ProgressRing value={progress} />
               </div>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {project.tech.map((tech) => (<span key={tech} className="rounded-full bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-zinc-400 ring-1 ring-white/[0.06]">{tech}</span>))}
