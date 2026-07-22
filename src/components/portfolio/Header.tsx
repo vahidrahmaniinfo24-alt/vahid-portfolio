@@ -1,9 +1,10 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { MapPin, ArrowDown, Download } from "lucide-react";
+import { MapPin, ArrowDown } from "lucide-react";
 import OpenToWorkBadge from "./OpenToWorkBadge";
 import ProfilePhoto from "./ProfilePhoto";
+import CvDownloadDialog from "./CvDownloadDialog";
 import cvPdf from "../../../img/vahid_cv.pdf";
 
 const Header = () => {
@@ -23,9 +24,7 @@ const Header = () => {
           <a href="#experience" className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm font-medium text-zinc-300 transition hover:border-white/20 hover:text-[#f4f4f5]">
             {t("header.experienceBtn")} <ArrowDown size={15} />
           </a>
-          <a href={cvPdf} download className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm font-medium text-zinc-300 transition hover:border-teal-400/40 hover:text-teal-400">
-            <Download size={15} /> {t("header.cvBtn")}
-          </a>
+          <CvDownloadDialog cvPdf={cvPdf} />
         </div>
       </div>
     </header>

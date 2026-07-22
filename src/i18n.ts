@@ -338,6 +338,14 @@ const resources = {
 
       "footer.credits": "Crafted with care by Vahid",
       "language.toggle": "DE",
+
+      "cvDialog.title": "Protected Download",
+      "cvDialog.description": "This CV is password protected. Please enter the password to download.",
+      "cvDialog.passwordLabel": "Password",
+      "cvDialog.placeholder": "Enter password",
+      "cvDialog.download": "Download CV",
+      "cvDialog.cancel": "Cancel",
+      "cvDialog.error": "Incorrect password. Please try again.",
     },
   },
   de: {
@@ -674,6 +682,14 @@ const resources = {
 
       "footer.credits": "Mit Sorgfalt von Vahid erstellt",
       "language.toggle": "EN",
+
+      "cvDialog.title": "Geschützter Download",
+      "cvDialog.description": "Dieser Lebenslauf ist passwortgeschützt. Bitte geben Sie das Passwort ein, um ihn herunterzuladen.",
+      "cvDialog.passwordLabel": "Passwort",
+      "cvDialog.placeholder": "Passwort eingeben",
+      "cvDialog.download": "Lebenslauf herunterladen",
+      "cvDialog.cancel": "Abbrechen",
+      "cvDialog.error": "Falsches Passwort. Bitte versuchen Sie es erneut.",
     },
   },
 };
